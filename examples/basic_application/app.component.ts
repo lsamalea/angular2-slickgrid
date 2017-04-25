@@ -13,10 +13,10 @@ const numberOfRows = 200;
                </slick-grid>`
 })
 export class AppComponent implements OnInit {
-    private dataRows: IObservableCollection<IGridDataRow>;
-    private columnDefinitions: IColumnDefinition[];
+    dataRows: IObservableCollection<IGridDataRow>;
+    columnDefinitions: IColumnDefinition[];
     // tslint:disable-next-line:no-unused-variable
-    private selectionModel = 'CellSelectionModel';
+    selectionModel = 'CellSelectionModel';
 
     ngOnInit(): void {
         // generate columns
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
                 type: this.randomType()
             });
         }
-        let loadDataFunction = (offset: number, count: number): Promise<IGridDataRow[]> => {
+        let loadDataFunction = (offset: number, count: number) => {
             return new Promise<IGridDataRow[]>((resolve) => {
                 let data: IGridDataRow[] = [];
                 for (let i = offset; i < offset + count; i++) {
@@ -53,8 +53,13 @@ export class AppComponent implements OnInit {
     }
 
     private randomType(): FieldType {
-        let types = [FieldType.Boolean, FieldType.Date, FieldType.Decimal, FieldType.Integer,
-                    FieldType.String];
+        let types = [
+                        FieldType.boolean, 
+                        FieldType.date, 
+                        FieldType.decimal, 
+                        FieldType.integer,
+                        FieldType.string
+                    ];
         let rand = Math.floor(Math.random() * (types.length - 0 + 1));
         return types[rand];
     }

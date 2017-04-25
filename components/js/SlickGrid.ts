@@ -10,6 +10,8 @@ import { IObservableCollection, CollectionChange, IGridDataRow, IColumnDefinitio
 import { GridSyncService } from './gridsync.service';
 import { ISlickRange, ISlickEvent } from './selectionmodel';
 
+import * as _ from 'lodash'
+
 declare let Slick;
 
 ////////// Interfaces /////////////////////////////////////////////////////////
@@ -34,6 +36,9 @@ interface ISlickGridColumn {
     asyncPostRender?: (cellRef: string, row: number, dataContext: JSON, colDef: any) => void;
     formatter?: (row: number, cell: any, value: any, columnDef: any, dataContext: any) => string;
 }
+
+type TypeF = typeof FieldType;
+
 
 ////////// Text Editors ///////////////////////////////////////////////////////
 
@@ -531,7 +536,7 @@ export class SlickGrid implements OnChanges, OnInit, OnDestroy, AfterViewInit {
 
                 let valueToDisplay = (value + '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
                 let cellClasses = 'grid-cell-value-container';
-                if (columnType !== FieldType.String) {
+                if (columnType !== FieldType.string) {
                     cellClasses += ' right-justified';
                 }
 
@@ -672,20 +677,21 @@ export class SlickGrid implements OnChanges, OnInit, OnDestroy, AfterViewInit {
             return column;
         });
     }
+    
 
-    private getImagePathForDataType(type: FieldType): string {
+    private getImagePathForDataType<K extends keyof TypeF>(type: K): string {
         const resourcePath = './resources/';
         switch (type) {
-            case FieldType.String:
-                return resourcePath + 'col-type-string.svg';
-            case FieldType.Boolean:
+            case FieldType.string:
+                 resourcePath + 'col-type-string.svg';
+            case FieldType.boolean:
                 return resourcePath + 'col-type-boolean.svg';
-            case FieldType.Integer:
-            case FieldType.Decimal:
+            case FieldType.integer:
+            case FieldType.decimal:
                 return resourcePath + 'col-type-number.svg';
-            case FieldType.Date:
+            case FieldType.date:
                 return resourcePath + 'col-type-timedate.svg';
-            case FieldType.Unknown:
+            case FieldType.unknown:
             default:
                 return resourcePath + 'circle.svg';
         }

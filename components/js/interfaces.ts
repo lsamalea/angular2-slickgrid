@@ -46,19 +46,31 @@ export class CancellationToken {
     }
 }
 
-export enum FieldType {
-    String = 0,
-    Boolean = 1,
-    Integer = 2,
-    Decimal = 3,
-    Date = 4,
-    Unknown = 5
+//commnent lsamalea: it's better if each type is string.
+
+export class FieldType{
+    static readonly string: string =  "string";
+    static readonly boolean: string =  "boolean";
+    static readonly integer: string =  "integer";
+    static readonly decimal: string =  "decimal";
+    static readonly date: string =  "date";
+    static readonly unknown: string = "unknown";
 }
+
+// export enum FieldType {
+//     String = 0,
+//     Boolean = 1,
+//     Integer = 2,
+//     Decimal = 3,
+//     Date = 4,
+//     Unknown = 5
+// }
+export type TypeF = typeof FieldType;
 
 export interface IColumnDefinition {
     id?: string;
     name: string;
-    type: FieldType;
+    type: keyof TypeF;
     asyncPostRender?: (cellRef: string, row: number, dataContext: JSON, colDef: any) => void;
     formatter?: (row: number, cell: any, value: any, columnDef: any, dataContext: any) => string;
 }

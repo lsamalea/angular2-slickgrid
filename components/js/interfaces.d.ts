@@ -26,13 +26,19 @@ export declare class CancellationToken {
     isCanceled: boolean;
     canceled: Observable<any>;
 }
-export declare enum FieldType {
-    String = 0,
-    Boolean = 1,
-    Integer = 2,
-    Decimal = 3,
-    Date = 4,
-    Unknown = 5,
+export declare class FieldType {
+    static readonly: any;
+    string: string;
+    static readonly: any;
+    string: string;
+    static readonly: any;
+    string: string;
+    static readonly: any;
+    string: string;
+    static readonly: any;
+    string: string;
+    static readonly: any;
+    string: string;
 }
 export interface IColumnDefinition {
     id?: string;

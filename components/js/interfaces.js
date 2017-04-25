@@ -31,12 +31,21 @@ class CancellationToken {
     }
 }
 exports.CancellationToken = CancellationToken;
-(function (FieldType) {
-    FieldType[FieldType["String"] = 0] = "String";
-    FieldType[FieldType["Boolean"] = 1] = "Boolean";
-    FieldType[FieldType["Integer"] = 2] = "Integer";
-    FieldType[FieldType["Decimal"] = 3] = "Decimal";
-    FieldType[FieldType["Date"] = 4] = "Date";
-    FieldType[FieldType["Unknown"] = 5] = "Unknown";
-})(exports.FieldType || (exports.FieldType = {}));
-var FieldType = exports.FieldType;
+//commnent lsamalea: it's better if each type is string.
+class FieldType {
+    constructor() {
+        this.string = "string";
+        this.string = "boolean";
+        this.string = "integer";
+        this.string = "decimal";
+        this.string = "date";
+        this.string = "unknown";
+    }
+}
+FieldType.readonly = string;
+FieldType.readonly = boolean;
+FieldType.readonly = integer;
+FieldType.readonly = decimal;
+FieldType.readonly = date;
+FieldType.readonly = unknown;
+exports.FieldType = FieldType;
